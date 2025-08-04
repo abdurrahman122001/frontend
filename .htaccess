@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Remove .html extension from URLs (for thrive folder)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
+
+# Optional: Redirect URLs with a trailing slash to non-slash version (for files)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)/$ /thrive/$1 [L,R=301]

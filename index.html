@@ -720,7 +720,9 @@
 
       async function fetchServices() {
         try {
-          const response = await fetch("http://thriveenterprisesolutions.com.au/admin/api/services");
+          const response = await fetch(
+            "http://thriveenterprisesolutions.com.au/admin/api/services"
+          );
           if (!response.ok)
             throw new Error(`HTTP error! status: ${response.status}`);
           const services = await response.json();
@@ -750,10 +752,10 @@
                         `);
             });
 
-            if (services.length > 6) {
+            if (services.length > 5) {
               servicesContainer.append(`
                             <div class="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
-                                <a href="services.html" class="view-more-btn">
+                                <a href="/Thrive/services" class="view-more-btn">
                                     <i class='bx bx-right-arrow-alt'></i> View More
                                 </a>
                             </div>
@@ -954,36 +956,38 @@
         }
       }
 
-     async function fetchContactInfo() {
-  try {
-    const response = await fetch("http://thriveenterprisesolutions.com.au/admin/api/contact");
-    if (!response.ok)
-      throw new Error(`HTTP error! status: ${response.status}`);
-    const info = await response.json(); // No .length, it's a single object
+      async function fetchContactInfo() {
+        try {
+          const response = await fetch(
+            "http://thriveenterprisesolutions.com.au/admin/api/contact"
+          );
+          if (!response.ok)
+            throw new Error(`HTTP error! status: ${response.status}`);
+          const info = await response.json(); // No .length, it's a single object
 
-    // Compose the HTML for contact info and social links
-    let socialHtml = "";
-    if (info.facebook)
-      socialHtml += `<a href="${info.facebook}" target="_blank"><i class="bx bxl-facebook"></i></a>`;
-    if (info.twitter)
-      socialHtml += `<a href="${info.twitter}" target="_blank"><i class="bx bxl-twitter"></i></a>`;
-    if (info.instagram)
-      socialHtml += `<a href="${info.instagram}" target="_blank"><i class="bx bxl-instagram"></i></a>`;
-    if (info.pinterest)
-      socialHtml += `<a href="${info.pinterest}" target="_blank"><i class="bx bxl-pinterest"></i></a>`;
-    if (info.linkedin)
-      socialHtml += `<a href="${info.linkedin}" target="_blank"><i class="bx bxl-linkedin"></i></a>`;
-    if (!socialHtml) {
-      socialHtml = `
+          // Compose the HTML for contact info and social links
+          let socialHtml = "";
+          if (info.facebook)
+            socialHtml += `<a href="${info.facebook}" target="_blank"><i class="bx bxl-facebook"></i></a>`;
+          if (info.twitter)
+            socialHtml += `<a href="${info.twitter}" target="_blank"><i class="bx bxl-twitter"></i></a>`;
+          if (info.instagram)
+            socialHtml += `<a href="${info.instagram}" target="_blank"><i class="bx bxl-instagram"></i></a>`;
+          if (info.pinterest)
+            socialHtml += `<a href="${info.pinterest}" target="_blank"><i class="bx bxl-pinterest"></i></a>`;
+          if (info.linkedin)
+            socialHtml += `<a href="${info.linkedin}" target="_blank"><i class="bx bxl-linkedin"></i></a>`;
+          if (!socialHtml) {
+            socialHtml = `
         <a href="#"><i class="bx bxl-facebook"></i></a>
         <a href="#"><i class="bx bxl-twitter"></i></a>
         <a href="#"><i class="bx bxl-instagram"></i></a>
         <a href="#"><i class="bx bxl-pinterest"></i></a>
         <a href="#"><i class="bx bxl-linkedin"></i></a>
       `;
-    }
+          }
 
-    $("#top-nav-content").html(`
+          $("#top-nav-content").html(`
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-auto">
@@ -1004,12 +1008,12 @@
         </div>
       </div>
     `);
-  } catch (error) {
-    console.error("Error loading contact info:", error);
-  } finally {
-    hideLoader();
-  }
-}
+        } catch (error) {
+          console.error("Error loading contact info:", error);
+        } finally {
+          hideLoader();
+        }
+      }
 
       $(document).ready(function () {
         // Show loader initially
