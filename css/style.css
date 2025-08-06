@@ -448,7 +448,7 @@ input.form-control {
   position: relative;
   padding: 2px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #0d6efd, #00d4ff);
+  background-color: #C58C62;
 }
 
 .inner-box {
@@ -458,7 +458,7 @@ input.form-control {
 }
 
 .service-heading {
-  background: linear-gradient(to right, #0d6efd, #00d4ff);
+  background-color: #C58C62;
   padding: 15px 20px;
 }
 
