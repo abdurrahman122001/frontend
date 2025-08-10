@@ -1,458 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="img/Logo Files/Favicons/browser.png"
-    />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/owl.theme.default.min.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Thrive Enterprise</title>
-    <style>
-      /* Loader Styles */
-      #loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="img/Logo Files/Favicons/browser.png" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/owl.theme.default.min.css" />
+  <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Thrive Enterprise</title>
+  <style>
+    /* Loader Styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      width: 70px;
+      height: 70px;
+      border: 8px solid #f3f3f3;
+      border-top: 4px solid #c68d62;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
       }
 
-      .spinner {
-        width: 70px;
-        height: 70px;
-        border: 8px solid #f3f3f3;
-        border-top: 4px solid #c68d62;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin-bottom: 20px;
+      100% {
+        transform: rotate(360deg);
       }
+    }
 
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
+    .loading-text {
+      font-size: 18px;
+      color: #333;
+      margin-top: 15px;
+    }
 
-      .loading-text {
-        font-size: 18px;
-        color: #333;
-        margin-top: 15px;
-      }
+    /* Hide content initially */
+    body.content-loaded #loader {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-      /* Hide content initially */
-      body.content-loaded #loader {
-        opacity: 0;
-        pointer-events: none;
-      }
+    body:not(.content-loaded) #main-content {
+      display: none;
+    }
 
-      body:not(.content-loaded) #main-content {
-        display: none;
-      }
+    /* Other existing styles... */
+    .footer-logo {
+      height: 70px;
+      margin-bottom: 20px;
+    }
 
-      /* Other existing styles... */
-      .footer-logo {
-        height: 70px;
-        margin-bottom: 20px;
-      }
-      .conditions-section {
-        margin: 20px 0;
-      }
-      .conditions-section a {
-        color: #fff;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-      .conditions-section a:hover {
-        text-decoration: underline;
-      }
-      .footer-bottom {
-        background-color: rgba(0, 0, 0, 0.2);
-        padding: 20px 0;
-        color: #fff;
-      }
-      .footer-bottom a {
-        color: #fff;
-        text-decoration: underline;
-      }
-      .footer-bottom a:hover {
-        color: #ddd;
-      }
-      #formMessages {
-        margin-bottom: 15px;
-      }
-      .team-member .image {
-        position: relative;
-        overflow: hidden;
-        border-radius: 8px;
-      }
-      .team-member img {
-        width: 100%;
-        height: auto;
-        transition: transform 0.3s;
-      }
-      .team-member .social-icons {
-        position: absolute;
-        bottom: 100%; /* Hide above the image initially */
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-        padding: 10px; /* Add padding for spacing */
-        transition: all 0.3s ease; /* Smooth transition */
-      }
-      .team-member .social-icons a {
-        margin: 0 8px; /* Spacing between icons */
-        color: #fff; /* White icons for visibility */
-        font-size: 1.2rem; /* Slightly larger icons */
-        background: rgba(
+    .conditions-section {
+      margin: 20px 0;
+    }
+
+    .conditions-section a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .conditions-section a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 20px 0;
+      color: #fff;
+    }
+
+    .footer-bottom a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .footer-bottom a:hover {
+      color: #ddd;
+    }
+
+    #formMessages {
+      margin-bottom: 15px;
+    }
+
+    .team-member .image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .team-member img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s;
+    }
+
+    .team-member .social-icons {
+      position: absolute;
+      bottom: 100%;
+      /* Hide above the image initially */
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      /* Center horizontally */
+      align-items: center;
+      /* Center vertically */
+      padding: 10px;
+      /* Add padding for spacing */
+      transition: all 0.3s ease;
+      /* Smooth transition */
+    }
+
+    .team-member .social-icons a {
+      margin: 0 8px;
+      /* Spacing between icons */
+      color: #fff;
+      /* White icons for visibility */
+      font-size: 1.2rem;
+      /* Slightly larger icons */
+      background: rgba(0,
           0,
           0,
-          0,
-          0.5
-        ); /* Semi-transparent background for contrast */
-        padding: 8px; /* Padding for better click area */
-        border-radius: 50%; /* Circular icon background */
-      }
-      .team-member .social-icons a:hover {
-        background: rgba(0, 0, 0, 0.7); /* Darker background on hover */
-      }
-      .team-member .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        opacity: 0;
-        transition: all 0.3s;
-      }
-      .team-member:hover .social-icons {
-        bottom: auto; /* Remove bottom positioning */
-        top: 50%; /* Center vertically */
-        transform: translateY(-50%); /* Adjust for true vertical centering */
-      }
-      .team-member:hover .overlay {
-        opacity: 1;
-      }
-      .service {
-        padding: 30px;
-        border-radius: 8px;
-        background: #fff;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s;
-        height: 100%;
-      }
-      .service:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      }
-      .view-more-btn {
-        display: inline-flex;
-        align-items: center;
-        color: #fff; /* White text */
-        font-weight: 600;
-        text-decoration: none;
-      }
-      .view-more-btn i {
-        margin-left: 5px;
-        color: #fff; /* White icon */
-      }
-      .view-more-btn:hover {
-        color: #ddd; /* Lighter shade on hover */
-      }
-      .view-more-btn:hover i {
-        color: #ddd; /* Icon hover color */
-      }
-    </style>
-  </head>
+          0.5);
+      /* Semi-transparent background for contrast */
+      padding: 8px;
+      /* Padding for better click area */
+      border-radius: 50%;
+      /* Circular icon background */
+    }
 
-  <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
-    <!-- Loader -->
-    <div id="loader">
-      <div class="spinner"></div>
+    .team-member .social-icons a:hover {
+      background: rgba(0, 0, 0, 0.7);
+      /* Darker background on hover */
+    }
+
+    .team-member .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .team-member:hover .social-icons {
+      bottom: auto;
+      /* Remove bottom positioning */
+      top: 50%;
+      /* Center vertically */
+      transform: translateY(-50%);
+      /* Adjust for true vertical centering */
+    }
+
+    .team-member:hover .overlay {
+      opacity: 1;
+    }
+
+    .service {
+      padding: 30px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+      height: 100%;
+    }
+
+    .service:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .view-more-btn {
+      display: inline-flex;
+      align-items: center;
+      color: #fff;
+      /* White text */
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .view-more-btn i {
+      margin-left: 5px;
+      color: #fff;
+      /* White icon */
+    }
+
+    .view-more-btn:hover {
+      color: #ddd;
+      /* Lighter shade on hover */
+    }
+
+    .view-more-btn:hover i {
+      color: #ddd;
+      /* Icon hover color */
+    }
+  </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <div class="top-nav" id="top-nav-content">
+      <!-- JS will inject contact info and social links here -->
     </div>
 
-    <!-- Main Content -->
-    <div id="main-content">
-      <div class="top-nav" id="top-nav-content">
-        <!-- JS will inject contact info and social links here -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/thrive/">
+          <img id="header-logo" src="img/Logo Files/png/Color logo - no background.png" alt="Thrive Enterprise Logo"
+            height="70">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul id="header-menu" class="navbar-nav ms-auto"></ul>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-brand ms-lg-3">Contact</a>
+        </div>
       </div>
+    </nav>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <div class="container">
-          <a class="navbar-brand" href="#" id="main-logo">
-            <img
-              src="img/Logo Files/png/Color logo - no background.png"
-              alt="Thrive Enterprise Logo"
-              height="70"
-            />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#services">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#team">Team</a>
-              </li>
-            </ul>
-            <a
-              href="#"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-              class="btn btn-brand ms-lg-3"
-              >Contact</a
-            >
+    <div class="owl-carousel owl-theme hero-slider" id="hero-slider"></div>
+
+    <section id="about">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 py-5">
+            <h1 id="about-title">Who we are?</h1>
+            <div id="about-description">
+              <p>
+                At Thrive Enterprise Solutions, we're passionate about helping
+                businesses grow and succeed. Based in Perth, we partner with
+                organisations to tackle challenges, unlock opportunities, and
+                build stronger, more resilient operations.
+              </p>
+              <p>
+                Our team supports businesses in strengthening their people
+                capabilities through learning and development programs, career
+                services, and HR advisory support.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <img id="about-image" src="img/about.png" alt="About Us" />
           </div>
         </div>
-      </nav>
+      </div>
+    </section>
 
-      <div class="owl-carousel owl-theme hero-slider" id="hero-slider"></div>
+    <section id="milestone">
+      <div class="container">
+        <div class="row text-center justify-content-center gy-4">
+          <div class="col-lg-2 col-sm-6">
+            <h1 class="display-4">90K+</h1>
+            <p class="mb-0">Happy Clients</p>
+          </div>
+          <div class="col-lg-2 col-sm-6">
+            <h1 class="display-4">45M</h1>
+            <p class="mb-0">Line up Clients</p>
+          </div>
+          <div class="col-lg-2 col-sm-6">
+            <h1 class="display-4">190</h1>
+            <p class="mb-0">In Progress</p>
+          </div>
+          <div class="col-lg-2 col-sm-6">
+            <h1 class="display-4">380K</h1>
+            <p class="mb-0">Total Completed</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <section id="about">
+    <section id="services" class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="intro">
+              <h6>Our Services</h6>
+              <h1>What We Do?</h1>
+              <p class="mx-auto">
+                Contrary to popular belief, Lorem Ipsum is not simply random
+                text. It has roots in a piece of classical Latin literature
+                from 45 BC, making it over 2000 years old.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4" id="services-container"></div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="intro">
+              <h6>Team</h6>
+              <h1>Team Members</h1>
+              <p class="mx-auto">
+                Contrary to popular belief, Lorem Ipsum is not simply random
+                text. It has roots in a piece of classical Latin literature
+                from 45 BC, making it over 2000 years old.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center" id="team-container"></div>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-top text-center">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-5 py-5">
-              <h1 id="about-title">Who we are?</h1>
-              <div id="about-description">
-                <p>
-                  At Thrive Enterprise Solutions, we're passionate about helping
-                  businesses grow and succeed. Based in Perth, we partner with
-                  organisations to tackle challenges, unlock opportunities, and
-                  build stronger, more resilient operations.
-                </p>
-                <p>
-                  Our team supports businesses in strengthening their people
-                  capabilities through learning and development programs, career
-                  services, and HR advisory support.
-                </p>
+            <a class="navbar-brand" href="#" id="footer-logo">
+              <img src="img/Logo Files/png/White logo - no background.png" alt="Thrive Enterprise Logo"
+                class="footer-logo" />
+            </a>
+            <div class="col-lg-6 text-center">
+              <p id="footer-description">Loading footer content...</p>
+              <div class="col-auto social-icons" id="footer-social">
+                <a href="#"><i class="bx bxl-facebook"></i></a>
+                <a href="#"><i class="bx bxl-twitter"></i></a>
+                <a href="#"><i class="bx bxl-instagram"></i></a>
+                <a href="#"><i class="bx bxl-pinterest"></i></a>
               </div>
-            </div>
-            <div class="col-lg-5">
-              <img id="about-image" src="img/about.png" alt="About Us" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="milestone">
-        <div class="container">
-          <div class="row text-center justify-content-center gy-4">
-            <div class="col-lg-2 col-sm-6">
-              <h1 class="display-4">90K+</h1>
-              <p class="mb-0">Happy Clients</p>
-            </div>
-            <div class="col-lg-2 col-sm-6">
-              <h1 class="display-4">45M</h1>
-              <p class="mb-0">Line up Clients</p>
-            </div>
-            <div class="col-lg-2 col-sm-6">
-              <h1 class="display-4">190</h1>
-              <p class="mb-0">In Progress</p>
-            </div>
-            <div class="col-lg-2 col-sm-6">
-              <h1 class="display-4">380K</h1>
-              <p class="mb-0">Total Completed</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" class="text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div class="intro">
-                <h6>Our Services</h6>
-                <h1>What We Do?</h1>
-                <p class="mx-auto">
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text. It has roots in a piece of classical Latin literature
-                  from 45 BC, making it over 2000 years old.
-                </p>
+              <div class="col-auto conditions-section" id="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Disclaimer</a>
               </div>
             </div>
           </div>
-          <div class="row g-4" id="services-container"></div>
         </div>
-      </section>
+      </div>
+      <div class="footer-bottom text-center">
+        <p class="mb-0" id="copyright-text">
+          Copyright Thrive Enterprise 2025. All rights Reserved
+        </p>
+        <span id="designer-text">Designed By
+          <a href="https://reinsoft.site">ReinSoft IT Solutions</a></span>
+      </div>
+    </footer>
 
-      <section id="team">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div class="intro">
-                <h6>Team</h6>
-                <h1>Team Members</h1>
-                <p class="mx-auto">
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text. It has roots in a piece of classical Latin literature
-                  from 45 BC, making it over 2000 years old.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="row justify-content-center" id="team-container"></div>
-        </div>
-      </section>
-      <footer>
-        <div class="footer-top text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <a class="navbar-brand" href="#" id="footer-logo">
-                <img
-                  src="img/Logo Files/png/White logo - no background.png"
-                  alt="Thrive Enterprise Logo"
-                  class="footer-logo"
-                />
-              </a>
-              <div class="col-lg-6 text-center">
-                <p id="footer-description">Loading footer content...</p>
-                <div class="col-auto social-icons" id="footer-social">
-                  <a href="#"><i class="bx bxl-facebook"></i></a>
-                  <a href="#"><i class="bx bxl-twitter"></i></a>
-                  <a href="#"><i class="bx bxl-instagram"></i></a>
-                  <a href="#"><i class="bx bxl-pinterest"></i></a>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <div class="container-fluid">
+              <div class="row gy-4">
+                <div class="col-lg-4 col-sm-12 bg-cover" style="background-image: url(img/c2.jpg); min-height: 300px">
                 </div>
-                <div class="col-auto conditions-section" id="footer-links">
-                  <a href="#">Privacy</a>
-                  <a href="#">Terms</a>
-                  <a href="#">Disclaimer</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom text-center">
-          <p class="mb-0" id="copyright-text">
-            Copyright Thrive Enterprise 2025. All rights Reserved
-          </p>
-          <span id="designer-text"
-            >Designed By
-            <a href="https://reinsoft.site">ReinSoft IT Solutions</a></span
-          >
-        </div>
-      </footer>
-
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-          <div class="modal-content">
-            <div class="modal-body p-0">
-              <div class="container-fluid">
-                <div class="row gy-4">
-                  <div
-                    class="col-lg-4 col-sm-12 bg-cover"
-                    style="background-image: url(img/c2.jpg); min-height: 300px"
-                  ></div>
-                  <div class="col-lg-8">
-                    <form id="contactForm" class="p-lg-5 col-12 row g-3">
-                      <div>
-                        <h1>Get in touch</h1>
-                        <p>
-                          Feel free to contact us and we will get back to you as
-                          soon as possible
-                        </p>
-                      </div>
-                      <div id="formMessages" class="col-12"></div>
-                      <div class="col-lg-6">
-                        <label for="firstName" class="form-label"
-                          >First name</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Jon"
-                          id="firstName"
-                          aria-describedby="emailHelp"
-                        />
-                      </div>
-                      <div class="col-lg-6">
-                        <label for="lastName" class="form-label"
-                          >Last name</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Doe"
-                          id="lastName"
-                          aria-describedby="emailHelp"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <label for="email" class="form-label"
-                          >Email address</label
-                        >
-                        <input
-                          type="email"
-                          class="form-control"
-                          placeholder="johndoe@example.com"
-                          id="email"
-                          aria-describedby="emailHelp"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <label for="message" class="form-label"
-                          >Enter Message</label
-                        >
-                        <textarea
-                          name="message"
-                          placeholder="This is looking great and nice."
-                          class="form-control"
-                          id="message"
-                          rows="4"
-                        ></textarea>
-                      </div>
-                      <div class="col-12">
-                        <button type="submit" class="btn btn-brand">
-                          Send Message
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+                <div class="col-lg-8">
+                  <form id="contactForm" class="p-lg-5 col-12 row g-3">
+                    <div>
+                      <h1>Get in touch</h1>
+                      <p>
+                        Feel free to contact us and we will get back to you as
+                        soon as possible
+                      </p>
+                    </div>
+                    <div id="formMessages" class="col-12"></div>
+                    <div class="col-lg-6">
+                      <label for="firstName" class="form-label">First name</label>
+                      <input type="text" class="form-control" placeholder="Jon" id="firstName"
+                        aria-describedby="emailHelp" />
+                    </div>
+                    <div class="col-lg-6">
+                      <label for="lastName" class="form-label">Last name</label>
+                      <input type="text" class="form-control" placeholder="Doe" id="lastName"
+                        aria-describedby="emailHelp" />
+                    </div>
+                    <div class="col-12">
+                      <label for="email" class="form-label">Email address</label>
+                      <input type="email" class="form-control" placeholder="johndoe@example.com" id="email"
+                        aria-describedby="emailHelp" />
+                    </div>
+                    <div class="col-12">
+                      <label for="message" class="form-label">Enter Message</label>
+                      <textarea name="message" placeholder="This is looking great and nice." class="form-control"
+                        id="message" rows="4"></textarea>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-brand">
+                        Send Message
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -460,101 +422,100 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script>
-      let carouselInitialized = false;
-      let apiCallsCompleted = 0;
-      const totalApiCalls = 7; // Number of API calls we're making
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script>
+    let carouselInitialized = false;
+    let apiCallsCompleted = 0;
+    const totalApiCalls = 7; // Number of API calls we're making
 
-      function showLoader() {
-        document.body.classList.remove("content-loaded");
-        document.getElementById("loader").style.display = "flex";
-      }
+    function showLoader() {
+      document.body.classList.remove("content-loaded");
+      document.getElementById("loader").style.display = "flex";
+    }
 
-      function hideLoader() {
-        apiCallsCompleted++;
-        if (apiCallsCompleted >= totalApiCalls) {
-          // Add a small delay for better UX
+    function hideLoader() {
+      apiCallsCompleted++;
+      if (apiCallsCompleted >= totalApiCalls) {
+        // Add a small delay for better UX
+        setTimeout(() => {
+          document.body.classList.add("content-loaded");
+          // Remove loader after fade out
           setTimeout(() => {
-            document.body.classList.add("content-loaded");
-            // Remove loader after fade out
-            setTimeout(() => {
-              document.getElementById("loader").style.display = "none";
-            }, 500);
+            document.getElementById("loader").style.display = "none";
           }, 500);
-        }
+        }, 500);
       }
+    }
 
-      function updateLoadingText(text) {
-        const loadingText = document.querySelector(".loading-text");
-        if (loadingText) {
-          loadingText.textContent = text;
-        }
+    function updateLoadingText(text) {
+      const loadingText = document.querySelector(".loading-text");
+      if (loadingText) {
+        loadingText.textContent = text;
       }
+    }
 
-      function initOwlCarousel() {
+    function initOwlCarousel() {
+      const heroSlider = $("#hero-slider");
+      if (heroSlider.hasClass("owl-loaded")) {
+        heroSlider.trigger("destroy.owl.carousel");
+        heroSlider.removeClass("owl-loaded owl-hidden");
+        heroSlider.find(".owl-stage-outer").children().unwrap();
+      }
+      heroSlider.owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        dots: false,
+        nav: true,
+        navText: [
+          "<i class='bx bx-chevron-left'></i>",
+          "<i class='bx bx-chevron-right'></i>",
+        ],
+        onInitialized: function () {
+          carouselInitialized = true;
+        },
+      });
+    }
+
+    async function loadSlides() {
+      try {
+        const response = await fetch(
+          "https://thriveenterprisesolutions.com.au/admin/api/hero-slides"
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        const slides = data.data || data || [];
         const heroSlider = $("#hero-slider");
-        if (heroSlider.hasClass("owl-loaded")) {
-          heroSlider.trigger("destroy.owl.carousel");
-          heroSlider.removeClass("owl-loaded owl-hidden");
-          heroSlider.find(".owl-stage-outer").children().unwrap();
-        }
-        heroSlider.owlCarousel({
-          items: 1,
-          loop: true,
-          autoplay: true,
-          autoplayTimeout: 5000,
-          autoplayHoverPause: true,
-          dots: false,
-          nav: true,
-          navText: [
-            "<i class='bx bx-chevron-left'></i>",
-            "<i class='bx bx-chevron-right'></i>",
-          ],
-          onInitialized: function () {
-            carouselInitialized = true;
-          },
-        });
-      }
+        heroSlider.empty();
 
-      async function loadSlides() {
-        try {
-          const response = await fetch(
-            "http://thriveenterprisesolutions.com.au/admin/api/hero-slides"
-          );
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          const slides = data.data || data || [];
-          const heroSlider = $("#hero-slider");
-          heroSlider.empty();
-
-          if (slides.length > 0) {
-            slides.forEach((slide, index) => {
-              const slideClass =
-                index % 2 === 0 ? "slide slide1" : "slide slide2";
-              const colClass =
-                slide.colClass ||
-                (index % 2 === 0
-                  ? "col-12 text-center text-white"
-                  : "col-12 col-lg-10 offset-lg-1 text-white");
-              heroSlider.append(`
+        if (slides.length > 0) {
+          slides.forEach((slide, index) => {
+            const slideClass =
+              index % 2 === 0 ? "slide slide1" : "slide slide2";
+            const colClass =
+              slide.colClass ||
+              (index % 2 === 0
+                ? "col-12 text-center text-white"
+                : "col-12 col-lg-10 offset-lg-1 text-white");
+            heroSlider.append(`
                             <div class="${slideClass}">
                                 <div class="container">
                                     <div class="row">
                                         <div class="${colClass}">
-                                            <h6 class="text-white text-uppercase">${
-                                              slide.subtitle ||
-                                              "Professional Platform"
-                                            }</h6>
-                                            <h1 class="display-3 my-4">${
-                                              slide.title ||
-                                              "We Craft Solutions"
-                                            }</h1>
+                                            <h6 class="text-white text-uppercase">${slide.subtitle ||
+              "Professional Platform"
+              }</h6>
+                                            <h1 class="display-3 my-4">${slide.title ||
+              "We Craft Solutions"
+              }</h1>
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-brand">Contact</a>
                                             <a href="services.html" class="btn btn-outline-light ms-3">Our Services</a>
                                         </div>
@@ -562,37 +523,37 @@
                                 </div>
                             </div>
                         `);
-            });
-          } else {
-            loadFallbackSlides();
-          }
-          initOwlCarousel();
-        } catch (error) {
-          console.error("Error loading slides:", error);
+          });
+        } else {
           loadFallbackSlides();
-        } finally {
-          hideLoader();
         }
+        initOwlCarousel();
+      } catch (error) {
+        console.error("Error loading slides:", error);
+        loadFallbackSlides();
+      } finally {
+        hideLoader();
       }
+    }
 
-      function loadFallbackSlides() {
-        const heroSlider = $("#hero-slider");
-        heroSlider.empty();
-        const fallbackSlides = [
-          {
-            subtitle: "A Platform for Professionals",
-            title: "We craft<br>Your Ideas",
-            colClass: "col-12 text-center text-white",
-          },
-          {
-            subtitle: "We craft Your Ideas",
-            title: "A Platform For<br>Professionals",
-            colClass: "col-12 col-lg-10 offset-lg-1 text-white",
-          },
-        ];
-        fallbackSlides.forEach((slide, index) => {
-          const slideClass = index % 2 === 0 ? "slide slide1" : "slide slide2";
-          heroSlider.append(`
+    function loadFallbackSlides() {
+      const heroSlider = $("#hero-slider");
+      heroSlider.empty();
+      const fallbackSlides = [
+        {
+          subtitle: "A Platform for Professionals",
+          title: "We craft<br>Your Ideas",
+          colClass: "col-12 text-center text-white",
+        },
+        {
+          subtitle: "We craft Your Ideas",
+          title: "A Platform For<br>Professionals",
+          colClass: "col-12 col-lg-10 offset-lg-1 text-white",
+        },
+      ];
+      fallbackSlides.forEach((slide, index) => {
+        const slideClass = index % 2 === 0 ? "slide slide1" : "slide slide2";
+        heroSlider.append(`
                     <div class="${slideClass}">
                         <div class="container">
                             <div class="row">
@@ -606,229 +567,220 @@
                         </div>
                     </div>
                 `);
-        });
-        initOwlCarousel();
-      }
+      });
+      initOwlCarousel();
+    }
 
-      async function fetchLogo() {
-        try {
-          const response = await fetch(
-            "http://thriveenterprisesolutions.com.au/admin/api/logos"
-          );
-          if (!response.ok)
-            throw new Error(`HTTP error! status: ${response.status}`);
-          const logos = await response.json();
+    async function fetchLogo() {
+      try {
+        const response = await fetch(
+          "https://thriveenterprisesolutions.com.au/admin/api/logos"
+        );
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        const logos = await response.json();
 
-          if (logos.length > 0) {
-            const logo = logos[0];
-            // Update main logo
-            const mainLogo = $("#main-logo img");
-            if (logo.main_logo) {
-              mainLogo.attr(
-                "src",
-                `http://thriveenterprisesolutions.com.au/admin/storage/${logo.main_logo}`
-              );
-              mainLogo.on("error", function () {
-                $(this).attr(
-                  "src",
-                  "img/Logo Files/png/Color logo - no background.png"
-                );
-              });
-            }
-
-            // Update footer logo
-            const footerLogo = $("#footer-logo img");
-            if (logo.footer_logo) {
-              footerLogo.attr(
-                "src",
-                `http://thriveenterprisesolutions.com.au/admin/storage/${logo.footer_logo}`
-              );
-              footerLogo.on("error", function () {
-                $(this).attr(
-                  "src",
-                  "img/Logo Files/png/White logo - no background.png"
-                );
-              });
-            }
-
-            // Update favicon
-            const favicon = $("link[rel='icon']");
-            if (logo.favicon) {
-              favicon.attr(
-                "href",
-                `http://thriveenterprisesolutions.com.au/admin/storage/${logo.favicon}`
-              );
-              favicon.on("error", function () {
-                $(this).attr("href", "img/Logo Files/Favicons/browser.png");
-              });
-            }
-          }
-        } catch (error) {
-          console.error("Error loading logos:", error);
-        } finally {
-          hideLoader();
-        }
-      }
-
-      async function fetchAbout() {
-        try {
-          const response = await fetch(
-            "http://thriveenterprisesolutions.com.au/admin/api/abouts"
-          );
-          if (!response.ok)
-            throw new Error(`HTTP error! status: ${response.status}`);
-          const abouts = await response.json();
-          const aboutTitle = $("#about-title");
-          const aboutDescription = $("#about-description");
-          const aboutImage = $("#about-image");
-          aboutTitle.empty();
-          aboutDescription.empty();
-          if (abouts.length > 0) {
-            const about = abouts[0];
-            aboutTitle.text(about.title || "Who we are?");
-            aboutDescription.html(
-              `<p>${about.description || "No description available"}</p>`
-            );
-            aboutImage.attr(
+        if (logos.length > 0) {
+          const logo = logos[0];
+          // Update main logo
+          const mainLogo = $("#main-logo img");
+          if (logo.main_logo) {
+            mainLogo.attr(
               "src",
-              about.image
-                ? `http://thriveenterprisesolutions.com.au/admin/storage/${about.image}`
-                : "img/about.png"
+              `https://thriveenterprisesolutions.com.au/admin/storage/${logo.main_logo}`
             );
-            aboutImage.attr("alt", about.title || "About Us");
-            aboutImage.on("error", function () {
-              $(this).attr("src", "img/about.png");
-              $(this).off("error");
+            mainLogo.on("error", function () {
+              $(this).attr(
+                "src",
+                "img/Logo Files/png/Color logo - no background.png"
+              );
             });
-          } else {
-            aboutTitle.text("Who we are?");
-            aboutDescription.html(
-              `<p>At Thrive Enterprise Solutions, we're passionate about helping businesses grow and succeed.</p>`
-            );
-            aboutImage.attr("src", "img/about.png");
-            aboutImage.attr("alt", "About Us");
           }
-        } catch (error) {
-          console.error("Error loading about section:", error);
-          $("#about").html(
-            '<p class="text-danger text-center">Failed to load about information.</p>'
-          );
-        } finally {
-          hideLoader();
+
+          // Update footer logo
+          const footerLogo = $("#footer-logo img");
+          if (logo.footer_logo) {
+            footerLogo.attr(
+              "src",
+              `https://thriveenterprisesolutions.com.au/admin/storage/${logo.footer_logo}`
+            );
+            footerLogo.on("error", function () {
+              $(this).attr(
+                "src",
+                "img/Logo Files/png/White logo - no background.png"
+              );
+            });
+          }
+
+          // Update favicon
+          const favicon = $("link[rel='icon']");
+          if (logo.favicon) {
+            favicon.attr(
+              "href",
+              `https://thriveenterprisesolutions.com.au/admin/storage/${logo.favicon}`
+            );
+            favicon.on("error", function () {
+              $(this).attr("href", "img/Logo Files/Favicons/browser.png");
+            });
+          }
         }
+      } catch (error) {
+        console.error("Error loading logos:", error);
+      } finally {
+        hideLoader();
       }
+    }
 
-      async function fetchServices() {
-        try {
-          const response = await fetch(
-            "http://thriveenterprisesolutions.com.au/admin/api/services"
+    async function fetchAbout() {
+      try {
+        const response = await fetch(
+          "https://thriveenterprisesolutions.com.au/admin/api/abouts"
+        );
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        const abouts = await response.json();
+        const aboutTitle = $("#about-title");
+        const aboutDescription = $("#about-description");
+        const aboutImage = $("#about-image");
+        aboutTitle.empty();
+        aboutDescription.empty();
+        if (abouts.length > 0) {
+          const about = abouts[0];
+          aboutTitle.text(about.title || "Who we are?");
+          aboutDescription.html(
+            `<p>${about.description || "No description available"}</p>`
           );
-          if (!response.ok)
-            throw new Error(`HTTP error! status: ${response.status}`);
-          const services = await response.json();
-          const servicesContainer = $("#services-container");
-          servicesContainer.empty();
+          aboutImage.attr(
+            "src",
+            about.image
+              ? `https://thriveenterprisesolutions.com.au/admin/storage/${about.image}`
+              : "img/about.png"
+          );
+          aboutImage.attr("alt", about.title || "About Us");
+          aboutImage.on("error", function () {
+            $(this).attr("src", "img/about.png");
+            $(this).off("error");
+          });
+        } else {
+          aboutTitle.text("Who we are?");
+          aboutDescription.html(
+            `<p>At Thrive Enterprise Solutions, we're passionate about helping businesses grow and succeed.</p>`
+          );
+          aboutImage.attr("src", "img/about.png");
+          aboutImage.attr("alt", "About Us");
+        }
+      } catch (error) {
+        console.error("Error loading about section:", error);
+        $("#about").html(
+          '<p class="text-danger text-center">Failed to load about information.</p>'
+        );
+      } finally {
+        hideLoader();
+      }
+    }
 
-          if (services.length > 0) {
-            services.slice(0, 6).forEach((service, index) => {
-              const iconPath = service.icon
-                ? `http://thriveenterprisesolutions.com.au/admin/storage/${service.icon}`
-                : `img/icon${(index % 7) + 1}.png`;
-              servicesContainer.append(`
+    async function fetchServices() {
+      try {
+        const response = await fetch(
+          "https://thriveenterprisesolutions.com.au/admin/api/services"
+        );
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        const services = await response.json();
+        const servicesContainer = $("#services-container");
+        servicesContainer.empty();
+
+        if (services.length > 0) {
+          services.slice(0, 6).forEach((service, index) => {
+            const iconPath = service.icon
+              ? `https://thriveenterprisesolutions.com.au/admin/storage/${service.icon}`
+              : `img/icon${(index % 7) + 1}.png`;
+            servicesContainer.append(`
                             <div class="col-lg-6 col-md-6">
                                 <div class="service">
-                                    <img src="${iconPath}" alt="${
-                service.title || "Service"
+                                    <img src="${iconPath}" alt="${service.title || "Service"
               }" onerror="this.src='img/icon${(index % 7) + 1}.png'">
-                                    <h5>${
-                                      service.title || "Untitled Service"
-                                    }</h5>
-                                    <p>${
-                                      service.short_description ||
-                                      "No description available"
-                                    }</p>
+                                    <h5>${service.title || "Untitled Service"
+              }</h5>
+                                    <p>${service.short_description ||
+              "No description available"
+              }</p>
                                 </div>
                             </div>
                         `);
-            });
+          });
 
-            if (services.length > 5) {
-              servicesContainer.append(`
+          if (services.length > 5) {
+            servicesContainer.append(`
                             <div class="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
                                 <a href="/Thrive/services" class="view-more-btn">
                                     <i class='bx bx-right-arrow-alt'></i> View More
                                 </a>
                             </div>
                         `);
-            }
-          } else {
-            servicesContainer.html(
-              '<p class="text-center">No services available at the moment.</p>'
-            );
           }
-        } catch (error) {
-          console.error("Error loading services:", error);
-          $("#services-container").html(
-            '<p class="text-danger">Failed to load services.</p>'
+        } else {
+          servicesContainer.html(
+            '<p class="text-center">No services available at the moment.</p>'
           );
-        } finally {
-          hideLoader();
         }
+      } catch (error) {
+        console.error("Error loading services:", error);
+        $("#services-container").html(
+          '<p class="text-danger">Failed to load services.</p>'
+        );
+      } finally {
+        hideLoader();
       }
+    }
 
-      async function fetchTeam() {
-        try {
-          const response = await fetch(
-            "http://thriveenterprisesolutions.com.au/admin/api/teams/list"
-          );
-          if (!response.ok)
-            throw new Error(`HTTP error! status: ${response.status}`);
-          const team = await response.json();
-          const teamContainer = $("#team-container");
-          teamContainer.empty();
+    async function fetchTeam() {
+      try {
+        const response = await fetch(
+          "https://thriveenterprisesolutions.com.au/admin/api/teams/list"
+        );
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        const team = await response.json();
+        const teamContainer = $("#team-container");
+        teamContainer.empty();
 
-          if (team.length > 0) {
-            team.forEach((member) => {
-              const imageUrl = member.image
-                ? `http://thriveenterprisesolutions.com.au/admin/storage/${member.image}`
-                : "img/team_1.jpg";
-              const socialLinks = member.social_links || {};
-              teamContainer.append(`
+        if (team.length > 0) {
+          team.forEach((member) => {
+            const imageUrl = member.image
+              ? `https://thriveenterprisesolutions.com.au/admin/storage/${member.image}`
+              : "img/team_1.jpg";
+            const socialLinks = member.social_links || {};
+            teamContainer.append(`
                             <div class="col-lg-4 col-md-8">
                                 <div class="team-member">
                                     <div class="image">
-                                        <img src="${imageUrl}" alt="${
-                member.name || "Team Member"
+                                        <img src="${imageUrl}" alt="${member.name || "Team Member"
               }" onerror="this.src='img/team_1.jpg'; this.onerror=null;">
                                         <div class="social-icons">
-                                            ${
-                                              socialLinks.twitter
-                                                ? `<a href="${socialLinks.twitter}" target="_blank"><i class='bx bxl-twitter'></i></a>`
-                                                : ""
-                                            }
-                                            ${
-                                              socialLinks.facebook
-                                                ? `<a href="${socialLinks.facebook}" target="_blank"><i class='bx bxl-facebook'></i></a>`
-                                                : ""
-                                            }
-                                            ${
-                                              socialLinks.linkedin
-                                                ? `<a href="${socialLinks.linkedin}" target="_blank"><i class='bx bxl-linkedin'></i></a>`
-                                                : ""
-                                            }
-                                            ${
-                                              socialLinks.instagram
-                                                ? `<a href="${socialLinks.instagram}" target="_blank"><i class='bx bxl-instagram'></i></a>`
-                                                : ""
-                                            }
-                                            ${
-                                              !socialLinks.twitter &&
-                                              !socialLinks.facebook &&
-                                              !socialLinks.linkedin &&
-                                              !socialLinks.instagram
-                                                ? "<a href=\"#\"><i class='bx bxl-pinterest'></i></a>"
-                                                : ""
-                                            }
+                                            ${socialLinks.twitter
+                ? `<a href="${socialLinks.twitter}" target="_blank"><i class='bx bxl-twitter'></i></a>`
+                : ""
+              }
+                                            ${socialLinks.facebook
+                ? `<a href="${socialLinks.facebook}" target="_blank"><i class='bx bxl-facebook'></i></a>`
+                : ""
+              }
+                                            ${socialLinks.linkedin
+                ? `<a href="${socialLinks.linkedin}" target="_blank"><i class='bx bxl-linkedin'></i></a>`
+                : ""
+              }
+                                            ${socialLinks.instagram
+                ? `<a href="${socialLinks.instagram}" target="_blank"><i class='bx bxl-instagram'></i></a>`
+                : ""
+              }
+                                            ${!socialLinks.twitter &&
+                !socialLinks.facebook &&
+                !socialLinks.linkedin &&
+                !socialLinks.instagram
+                ? "<a href=\"#\"><i class='bx bxl-pinterest'></i></a>"
+                : ""
+              }
                                         </div>
                                         <div class="overlay"></div>
                                     </div>
@@ -837,170 +789,168 @@
                                 </div>
                             </div>
                         `);
-            });
+          });
+        } else {
+          teamContainer.html(
+            '<p class="text-center">No team members to display.</p>'
+          );
+        }
+      } catch (error) {
+        console.error("Error loading team:", error);
+        $("#team-container").html(
+          '<p class="text-danger">Failed to load team members.</p>'
+        );
+      } finally {
+        hideLoader();
+      }
+    }
+
+    async function fetchFooter() {
+      try {
+        const response = await fetch(
+          "https://thriveenterprisesolutions.com.au/admin/api/footers"
+        );
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        const footers = await response.json();
+
+        if (footers.length > 0) {
+          const footer = footers[0];
+
+          // Update footer description
+          if (footer.description) {
+            $("#footer-description").text(footer.description);
+          }
+
+          // Update copyright text
+          if (footer.copyright_text) {
+            $("#copyright-text").text(footer.copyright_text);
+          }
+
+          // Update designer text
+          if (footer.designer_text) {
+            $("#designer-text").html(footer.designer_text);
           } else {
-            teamContainer.html(
-              '<p class="text-center">No team members to display.</p>'
+            $("#designer-text").html(
+              'Designed By <a href="https://reinsoft.site">ReinSoft IT Solutions</a>'
             );
           }
-        } catch (error) {
-          console.error("Error loading team:", error);
-          $("#team-container").html(
-            '<p class="text-danger">Failed to load team members.</p>'
-          );
-        } finally {
-          hideLoader();
-        }
-      }
 
-      async function fetchFooter() {
-        try {
-          const response = await fetch(
-            "http://thriveenterprisesolutions.com.au/admin/api/footers"
-          );
-          if (!response.ok)
-            throw new Error(`HTTP error! status: ${response.status}`);
-          const footers = await response.json();
+          // Update social links
+          const socialLinks = footer.social_links || {};
+          const socialIcons = $("#footer-social");
+          socialIcons.empty();
 
-          if (footers.length > 0) {
-            const footer = footers[0];
-
-            // Update footer description
-            if (footer.description) {
-              $("#footer-description").text(footer.description);
-            }
-
-            // Update copyright text
-            if (footer.copyright_text) {
-              $("#copyright-text").text(footer.copyright_text);
-            }
-
-            // Update designer text
-            if (footer.designer_text) {
-              $("#designer-text").html(footer.designer_text);
-            } else {
-              $("#designer-text").html(
-                'Designed By <a href="https://reinsoft.site">ReinSoft IT Solutions</a>'
-              );
-            }
-
-            // Update social links
-            const socialLinks = footer.social_links || {};
-            const socialIcons = $("#footer-social");
-            socialIcons.empty();
-
-            if (socialLinks.facebook) {
-              socialIcons.append(
-                `<a href="${socialLinks.facebook}" target="_blank"><i class='bx bxl-facebook'></i></a>`
-              );
-            }
-            if (socialLinks.twitter) {
-              socialIcons.append(
-                `<a href="${socialLinks.twitter}" target="_blank"><i class='bx bxl-twitter'></i></a>`
-              );
-            }
-            if (socialLinks.instagram) {
-              socialIcons.append(
-                `<a href="${socialLinks.instagram}" target="_blank"><i class='bx bxl-instagram'></i></a>`
-              );
-            }
-            if (socialLinks.linkedin) {
-              socialIcons.append(
-                `<a href="${socialLinks.linkedin}" target="_blank"><i class='bx bxl-linkedin'></i></a>`
-              );
-            }
-            if (Object.keys(socialLinks).length === 0) {
-              socialIcons.append(`
+          if (socialLinks.facebook) {
+            socialIcons.append(
+              `<a href="${socialLinks.facebook}" target="_blank"><i class='bx bxl-facebook'></i></a>`
+            );
+          }
+          if (socialLinks.twitter) {
+            socialIcons.append(
+              `<a href="${socialLinks.twitter}" target="_blank"><i class='bx bxl-twitter'></i></a>`
+            );
+          }
+          if (socialLinks.instagram) {
+            socialIcons.append(
+              `<a href="${socialLinks.instagram}" target="_blank"><i class='bx bxl-instagram'></i></a>`
+            );
+          }
+          if (socialLinks.linkedin) {
+            socialIcons.append(
+              `<a href="${socialLinks.linkedin}" target="_blank"><i class='bx bxl-linkedin'></i></a>`
+            );
+          }
+          if (Object.keys(socialLinks).length === 0) {
+            socialIcons.append(`
                             <a href="#"><i class='bx bxl-facebook'></i></a>
                             <a href="#"><i class='bx bxl-twitter'></i></a>
                             <a href="#"><i class='bx bxl-instagram'></i></a>
                             <a href="#"><i class='bx bxl-pinterest'></i></a>
                         `);
-            }
+          }
 
-            // Update footer links
-            const footerLinks = $("#footer-links");
-            footerLinks.empty();
+          // Update footer links
+          const footerLinks = $("#footer-links");
+          footerLinks.empty();
 
-            if (footer.privacy_link) {
-              footerLinks.append(
-                `<a href="${footer.privacy_link}" target="_blank">Privacy</a>`
-              );
-            }
-            if (footer.terms_link) {
-              footerLinks.append(
-                `<a href="${footer.terms_link}" target="_blank">Terms</a>`
-              );
-            }
-            if (footer.disclaimer_link) {
-              footerLinks.append(
-                `<a href="${footer.disclaimer_link}" target="_blank">Disclaimer</a>`
-              );
-            }
-            if (
-              !footer.privacy_link &&
-              !footer.terms_link &&
-              !footer.disclaimer_link
-            ) {
-              footerLinks.append(`
+          if (footer.privacy_link) {
+            footerLinks.append(
+              `<a href="${footer.privacy_link}" target="_blank">Privacy</a>`
+            );
+          }
+          if (footer.terms_link) {
+            footerLinks.append(
+              `<a href="${footer.terms_link}" target="_blank">Terms</a>`
+            );
+          }
+          if (footer.disclaimer_link) {
+            footerLinks.append(
+              `<a href="${footer.disclaimer_link}" target="_blank">Disclaimer</a>`
+            );
+          }
+          if (
+            !footer.privacy_link &&
+            !footer.terms_link &&
+            !footer.disclaimer_link
+          ) {
+            footerLinks.append(`
                             <a href="#">Privacy</a>
                             <a href="#">Terms</a>
                             <a href="#">Disclaimer</a>
                         `);
-            }
           }
-        } catch (error) {
-          console.error("Error loading footer:", error);
-        } finally {
-          hideLoader();
         }
+      } catch (error) {
+        console.error("Error loading footer:", error);
+      } finally {
+        hideLoader();
       }
+    }
 
-      async function fetchContactInfo() {
-        try {
-          const response = await fetch(
-            "http://thriveenterprisesolutions.com.au/admin/api/contact"
-          );
-          if (!response.ok)
-            throw new Error(`HTTP error! status: ${response.status}`);
-          const info = await response.json(); // No .length, it's a single object
+    async function fetchContactInfo() {
+      try {
+        const response = await fetch(
+          "https://thriveenterprisesolutions.com.au/admin/api/contact"
+        );
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        const info = await response.json(); // No .length, it's a single object
 
-          // Compose the HTML for contact info and social links
-          let socialHtml = "";
-          if (info.facebook)
-            socialHtml += `<a href="${info.facebook}" target="_blank"><i class="bx bxl-facebook"></i></a>`;
-          if (info.twitter)
-            socialHtml += `<a href="${info.twitter}" target="_blank"><i class="bx bxl-twitter"></i></a>`;
-          if (info.instagram)
-            socialHtml += `<a href="${info.instagram}" target="_blank"><i class="bx bxl-instagram"></i></a>`;
-          if (info.pinterest)
-            socialHtml += `<a href="${info.pinterest}" target="_blank"><i class="bx bxl-pinterest"></i></a>`;
-          if (info.linkedin)
-            socialHtml += `<a href="${info.linkedin}" target="_blank"><i class="bx bxl-linkedin"></i></a>`;
-          if (!socialHtml) {
-            socialHtml = `
+        // Compose the HTML for contact info and social links
+        let socialHtml = "";
+        if (info.facebook)
+          socialHtml += `<a href="${info.facebook}" target="_blank"><i class="bx bxl-facebook"></i></a>`;
+        if (info.twitter)
+          socialHtml += `<a href="${info.twitter}" target="_blank"><i class="bx bxl-twitter"></i></a>`;
+        if (info.instagram)
+          socialHtml += `<a href="${info.instagram}" target="_blank"><i class="bx bxl-instagram"></i></a>`;
+        if (info.pinterest)
+          socialHtml += `<a href="${info.pinterest}" target="_blank"><i class="bx bxl-pinterest"></i></a>`;
+        if (info.linkedin)
+          socialHtml += `<a href="${info.linkedin}" target="_blank"><i class="bx bxl-linkedin"></i></a>`;
+        if (!socialHtml) {
+          socialHtml = `
         <a href="#"><i class="bx bxl-facebook"></i></a>
         <a href="#"><i class="bx bxl-twitter"></i></a>
         <a href="#"><i class="bx bxl-instagram"></i></a>
         <a href="#"><i class="bx bxl-pinterest"></i></a>
         <a href="#"><i class="bx bxl-linkedin"></i></a>
       `;
-          }
+        }
 
-          $("#top-nav-content").html(`
+        $("#top-nav-content").html(`
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-auto">
-            ${
-              info.email
-                ? `<p><i class="bx bxs-envelope"></i> ${info.email}</p>`
-                : ""
-            }
-            ${
-              info.phone
-                ? `<p><i class="bx bxs-phone-call"></i> ${info.phone}</p>`
-                : ""
-            }
+            ${info.email
+            ? `<p><i class="bx bxs-envelope"></i> ${info.email}</p>`
+            : ""
+          }
+            ${info.phone
+            ? `<p><i class="bx bxs-phone-call"></i> ${info.phone}</p>`
+            : ""
+          }
           </div>
           <div class="col-auto social-icons">
             ${socialHtml}
@@ -1008,101 +958,151 @@
         </div>
       </div>
     `);
-        } catch (error) {
-          console.error("Error loading contact info:", error);
-        } finally {
-          hideLoader();
-        }
+      } catch (error) {
+        console.error("Error loading contact info:", error);
+      } finally {
+        hideLoader();
       }
+    }
+    const API_BASE_URL = 'https://thriveenterprisesolutions.com.au/admin/api';
+    const HEADER_ENDPOINT = '/headers';
+    const TERMS_ENDPOINT = '/terms-conditions/active';
+    const FOOTER_ENDPOINT = '/footers';
+    $(document).ready(function () {
+      // Fetch Header with STATIC LINKS
+      fetch(`${API_BASE_URL}${HEADER_ENDPOINT}`)
+        .then(res => res.json())
+        .then(headers => {
+          if (headers.length > 0) {
+            const header = headers[0];
 
-      $(document).ready(function () {
-        // Show loader initially
-        showLoader();
+            // Update logo
+            if (header.logo_path) {
+              $('#header-logo').attr('src', `${API_BASE_URL.replace('/api', '')}/storage/${header.logo_path}`);
+            }
 
-        // Load all data
-        fetchLogo();
-        loadSlides();
-        fetchAbout();
-        fetchServices();
-        fetchTeam();
-        fetchFooter();
-        fetchContactInfo();
-
-        // Contact form submission
-        $("#contactForm").on("submit", function (e) {
-          e.preventDefault();
-          $("#formMessages").empty();
-          const firstName = $("#firstName").val().trim();
-          const lastName = $("#lastName").val().trim();
-          const email = $("#email").val().trim();
-          const message = $("#message").val().trim();
-
-          if (!firstName || !lastName || !email || !message) {
-            $("#formMessages").html(
-              '<div class="alert alert-danger" role="alert">Please fill in all required fields.</div>'
-            );
-            return;
-          }
-
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            $("#formMessages").html(
-              '<div class="alert alert-danger" role="alert">Please enter a valid email address.</div>'
-            );
-            return;
-          }
-
-          const formData = {
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            message: message,
-          };
-
-          $.ajax({
-            url: "http://thriveenterprisesolutions.com.au/admin/api/contact-submissions",
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(formData),
-            success: function (response) {
-              $("#formMessages").html(
-                '<div class="alert alert-success" role="alert">' +
-                  (response.message || "Message sent successfully!") +
-                  "</div>"
-              );
-              $("#contactForm")[0].reset();
-              setTimeout(() => {
-                $("#exampleModal").modal("hide");
-                $("#formMessages").empty();
-              }, 2000);
-            },
-            error: function (xhr) {
-              const errorResponse = xhr.responseJSON;
-              let errorMessage =
-                "Failed to send message. Please try again later.";
-              if (errorResponse && errorResponse.errors) {
-                errorMessage = Object.values(errorResponse.errors)
-                  .flat()
-                  .join(" ");
-              } else if (errorResponse && errorResponse.message) {
-                errorMessage = errorResponse.message;
+            // Decode menu_items if JSON string
+            let menuItems = [];
+            if (typeof header.menu_items === 'string') {
+              try {
+                menuItems = JSON.parse(header.menu_items);
+              } catch (e) {
+                console.error("Invalid menu_items JSON");
               }
-              $("#formMessages").html(
-                '<div class="alert alert-danger" role="alert">' +
-                  errorMessage +
-                  "</div>"
-              );
-            },
-          });
-        });
+            } else if (Array.isArray(header.menu_items)) {
+              menuItems = header.menu_items;
+            }
 
-        // Reinitialize carousel on window resize
-        $(window).on("resize", function () {
-          if (carouselInitialized) {
-            initOwlCarousel();
+            // Static hrefs (you can match them to menu items order)
+            const staticHrefs = [
+              '#home',
+              '#about',
+              '#services',
+              '#team',
+              '#contact'
+            ];
+
+            // Populate menu dynamically with STATIC LINKS
+            const menuContainer = $('#header-menu');
+            menuContainer.empty();
+            menuItems.forEach((item, index) => {
+              const href = staticHrefs[index] || '#';
+              menuContainer.append(`<li class="nav-item"><a class="nav-link" href="${href}">${item}</a></li>`);
+            });
           }
+        });
+    });
+
+
+    $(document).ready(function () {
+      // Show loader initially
+      showLoader();
+
+      // Load all data
+      fetchLogo();
+      loadSlides();
+      fetchAbout();
+      fetchServices();
+      fetchTeam();
+      fetchFooter();
+      fetchContactInfo();
+
+      // Contact form submission
+      $("#contactForm").on("submit", function (e) {
+        e.preventDefault();
+        $("#formMessages").empty();
+        const firstName = $("#firstName").val().trim();
+        const lastName = $("#lastName").val().trim();
+        const email = $("#email").val().trim();
+        const message = $("#message").val().trim();
+
+        if (!firstName || !lastName || !email || !message) {
+          $("#formMessages").html(
+            '<div class="alert alert-danger" role="alert">Please fill in all required fields.</div>'
+          );
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          $("#formMessages").html(
+            '<div class="alert alert-danger" role="alert">Please enter a valid email address.</div>'
+          );
+          return;
+        }
+
+        const formData = {
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          message: message,
+        };
+
+        $.ajax({
+          url: "https://thriveenterprisesolutions.com.au/admin/api/contact-submissions",
+          method: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(formData),
+          success: function (response) {
+            $("#formMessages").html(
+              '<div class="alert alert-success" role="alert">' +
+              (response.message || "Message sent successfully!") +
+              "</div>"
+            );
+            $("#contactForm")[0].reset();
+            setTimeout(() => {
+              $("#exampleModal").modal("hide");
+              $("#formMessages").empty();
+            }, 2000);
+          },
+          error: function (xhr) {
+            const errorResponse = xhr.responseJSON;
+            let errorMessage =
+              "Failed to send message. Please try again later.";
+            if (errorResponse && errorResponse.errors) {
+              errorMessage = Object.values(errorResponse.errors)
+                .flat()
+                .join(" ");
+            } else if (errorResponse && errorResponse.message) {
+              errorMessage = errorResponse.message;
+            }
+            $("#formMessages").html(
+              '<div class="alert alert-danger" role="alert">' +
+              errorMessage +
+              "</div>"
+            );
+          },
         });
       });
-    </script>
-  </body>
+
+      // Reinitialize carousel on window resize
+      $(window).on("resize", function () {
+        if (carouselInitialized) {
+          initOwlCarousel();
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>

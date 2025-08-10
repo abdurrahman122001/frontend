@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="img/Logo Files/Favicons/browser.png">
@@ -14,63 +13,34 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Thrive Enterprise</title>
+    <title>Thrive Enterprise - Services</title>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
 
     <!-- TOP NAV -->
-    <div class="top-nav" id="home">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-auto">
-                    <p> <i class='bx bxs-envelope'></i> info@example.com</p>
-                    <p> <i class='bx bxs-phone-call'></i> 123 456-7890</p>
-                </div>
-                <div class="col-auto social-icons">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-twitter'></i></a>
-                    <a href="#"><i class='bx bxl-instagram'></i></a>
-                    <a href="#"><i class='bx bxl-pinterest'></i></a>
-                </div>
-            </div>
-        </div>
+    <div class="top-nav" id="top-nav-content">
+        <!-- JS will inject contact info and social links here -->
     </div>
 
     <!-- BOTTOM NAV -->
-   <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="/thrive/">
-            <img src="img/Logo Files/png/Color logo - no background.png" alt="Thrive Enterprise Logo" height="70">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/thrive/index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/thrive/index#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/thrive/index#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/thrive/index#team">Team</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/thrive/index#team">All Services</a>
-                </li>
-            </ul>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                class="btn btn-brand ms-lg-3">Contact</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/thrive/">
+                <img id="header-logo" src="img/Logo Files/png/Color logo - no background.png"
+                    alt="Thrive Enterprise Logo" height="70">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul id="header-menu" class="navbar-nav ms-auto"></ul>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    class="btn btn-brand ms-lg-3">Contact</a>
+            </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
 
     <!-- SLIDER -->
     <div class="top-banner position-relative" style="background-color: #c58c62;">
@@ -79,79 +49,74 @@
         </div>
     </div>
 
-    <!--Services-->
-    <div class="container py-5" id="services-container">
-        <!-- Services will be dynamically inserted here -->
-    </div>
-    <!--Services end-->
+    <!-- Services -->
+    <div class="container py-5" id="services-container"></div>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-top text-center">
             <div class="container">
                 <div class="row justify-content-center">
-                    <a class="navbar-brand" href="#">
-                       <img src="img/Logo Files/png/White logo - no background.png" alt="#" class="footer-logo">
+                    <a class="navbar-brand" href="#" id="footer-logo">
+                        <img src="img/Logo Files/png/White logo - no background.png" alt="Thrive Enterprise Logo"
+                            class="footer-logo">
                     </a>
                     <div class="col-lg-6 text-center">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                            classical Latin literature from</p>
-                        <div class="col-auto social-icons">
+                        <p id="footer-description">Contrary to popular belief, Lorem Ipsum is not simply random text.
+                        </p>
+                        <div class="col-auto social-icons" id="footer-social">
                             <a href="#"><i class='bx bxl-facebook'></i></a>
                             <a href="#"><i class='bx bxl-twitter'></i></a>
                             <a href="#"><i class='bx bxl-instagram'></i></a>
                             <a href="#"><i class='bx bxl-pinterest'></i></a>
                         </div>
-                        <div class="col-auto conditions-section">
-                            <a href="#">privacy</a>
-                            <a href="#">terms</a>
-                            <a href="#">disclaimer</i></a>
+                        <div class="col-auto conditions-section" id="footer-links">
+                            <a href="privacy.html">Privacy</a>
+                            <a href="terms.html">Terms</a>
+                            <a href="disclaimer.html">Disclaimer</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer-bottom text-center">
-            <p class="mb-0">Copyright Thrive Enterprise 2025. All rights Reserved</p> Designed By <a
-                href="https://reinsoft.site">ReinSoft IT Solutions</a>
+            <p class="mb-0" id="copyright-text">Copyright Thrive Enterprise 2025. All rights Reserved</p>
+            <span id="designer-text">Designed By <a href="https://reinsoft.site">ReinSoft IT Solutions</a></span>
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- MODAL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="container-fluid">
                         <div class="row gy-4">
                             <div class="col-lg-4 col-sm-12 bg-cover"
-                                style="background-image: url(img/c2.jpg); min-height:300px;">
-                                <div></div>
-                            </div>
+                                style="background-image: url(img/c2.jpg); min-height:300px;"></div>
                             <div class="col-lg-8">
-                                <form class="p-lg-5 col-12 row g-3">
+                                <form class="p-lg-5 col-12 row g-3" id="contactForm">
                                     <div>
                                         <h1>Get in touch</h1>
-                                        <p>Fell free to contact us and we will get back to you as soon as possible</p>
+                                        <p>Feel free to contact us and we will get back to you as soon as possible</p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="userName" class="form-label">First name</label>
-                                        <input type="text" class="form-control" placeholder="Jon" id="userName"
-                                            aria-describedby="emailHelp">
+                                        <label class="form-label">First name</label>
+                                        <input type="text" class="form-control" placeholder="Jon" required>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="userName" class="form-label">Last name</label>
-                                        <input type="text" class="form-control" placeholder="Doe" id="userName"
-                                            aria-describedby="emailHelp">
+                                        <label class="form-label">Last name</label>
+                                        <input type="text" class="form-control" placeholder="Doe" required>
                                     </div>
                                     <div class="col-12">
-                                        <label for="userName" class="form-label">Email address</label>
+                                        <label class="form-label">Email address</label>
                                         <input type="email" class="form-control" placeholder="Johndoe@example.com"
-                                            id="userName" aria-describedby="emailHelp">
+                                            required>
                                     </div>
                                     <div class="col-12">
-                                        <label for="exampleInputEmail1" class="form-label">Enter Message</label>
-                                        <textarea name="" placeholder="This is looking great and nice."
-                                            class="form-control" id="" rows="4"></textarea>
+                                        <label class="form-label">Enter Message</label>
+                                        <textarea name="message" placeholder="This is looking great and nice."
+                                            class="form-control" rows="4" required></textarea>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-brand">Send Message</button>
@@ -165,49 +130,297 @@
         </div>
     </div>
 
+    <!-- JS -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    
     <script>
-        $(document).ready(function() {
-            // Fetch services from API
-            fetch('http://thriveenterprisesolutions.com.au/admin/api/services')
-                .then(response => response.json())
+        const API_BASE_URL = 'https://thriveenterprisesolutions.com.au/admin/api';
+        const HEADER_ENDPOINT = '/headers';
+        const SERVICES_ENDPOINT = '/services';
+        const FOOTER_ENDPOINT = '/footers';
+        const CONTACT_ENDPOINT = '/contact';
+
+        // Helper function to get social media icon class
+        function getSocialIcon(platform) {
+            const iconMap = {
+                'facebook': 'bxl-facebook',
+                'twitter': 'bxl-twitter',
+                'instagram': 'bxl-instagram',
+                'pinterest': 'bxl-pinterest',
+                'linkedin': 'bxl-linkedin',
+                'youtube': 'bxl-youtube',
+                'tiktok': 'bxl-tiktok',
+                'whatsapp': 'bxl-whatsapp'
+            };
+            return iconMap[platform.toLowerCase()] || 'bx-link';
+        }
+
+        $(document).ready(function () {
+            // Fetch Contact Info
+            fetchContactInfo();
+
+            // Fetch Header
+            fetch(`${API_BASE_URL}${HEADER_ENDPOINT}`)
+                .then(res => res.json())
+                .then(headers => {
+                    if (headers.length > 0) {
+                        const header = headers[0];
+
+                        // Update logo
+                        if (header.logo_path) {
+                            $('#header-logo').attr('src', `${API_BASE_URL.replace('/api', '')}/storage/${header.logo_path}`);
+                        }
+
+                        // Decode menu_items if JSON string
+                        let menuItems = [];
+                        if (typeof header.menu_items === 'string') {
+                            try {
+                                menuItems = JSON.parse(header.menu_items);
+                            } catch (e) {
+                                console.error("Invalid menu_items JSON");
+                            }
+                        } else if (Array.isArray(header.menu_items)) {
+                            menuItems = header.menu_items;
+                        }
+
+                        // Static hrefs
+                        const staticHrefs = [
+                            '/thrive/index',
+                            '/thrive/index#about',
+                            '/thrive/index#services',
+                            '/thrive/index#team',
+                            '/thrive/index#contact'
+                        ];
+
+                        // Populate menu dynamically
+                        const menuContainer = $('#header-menu');
+                        menuContainer.empty();
+                        menuItems.forEach((item, index) => {
+                            const href = staticHrefs[index] || '#';
+                            menuContainer.append(`<li class="nav-item"><a class="nav-link" href="${href}">${item}</a></li>`);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading header:", error);
+                });
+
+            // Fetch Services
+            fetch(`${API_BASE_URL}${SERVICES_ENDPOINT}`)
+                .then(res => res.json())
                 .then(services => {
                     const container = $('#services-container');
-                    
-                    services.forEach(service => {
-                        // Create service box HTML
-                        const serviceBox = `
-                            <div class="service-box-wrapper mb-4">
-                                <div class="border-gradient">
-                                    <div class="inner-box">
-                                        <div class="service-heading text-white text-center" style="background-color: #C58C62">
-                                            <h4 class="mb-0">${service.title}</h4>
-                                        </div>
-                                        <div class="service-content p-3">
-                                            <div class="text-gray-600 text-sm prose prose-sm max-w-none">
+                    if (services.length > 0) {
+                        services.forEach(service => {
+                            container.append(`
+                                <div class="service-box-wrapper mb-4">
+                                    <div class="border-gradient">
+                                        <div class="inner-box">
+                                            <div class="service-heading text-white text-center" style="background-color: #C58C62">
+                                                <h4 class="mb-0">${service.title}</h4>
+                                            </div>
+                                            <div class="service-content p-3">
                                                 ${service.long_description}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            `);
+                        });
+                    } else {
+                        container.append(`
+                            <div class="alert alert-warning text-center">
+                                <h4>No Services Available</h4>
+                                <p>We couldn't load our services at this time. Please try again later.</p>
                             </div>
-                        `;
-                        
-                        container.append(serviceBox);
-                    });
+                        `);
+                    }
                 })
                 .catch(error => {
-                    console.error('Error fetching services:', error);
-                    $('#services-container').html(`
-                        <div class="alert alert-danger">
-                            Failed to load services. Please try again later.
+                    console.error("Error loading services:", error);
+                    $('#services-container').append(`
+                        <div class="alert alert-danger text-center">
+                            <h4>Error Loading Services</h4>
+                            <p>We couldn't load our services at this time. Please try again later.</p>
                         </div>
                     `);
                 });
+
+            // Fetch Footer
+            fetch(`${API_BASE_URL}${FOOTER_ENDPOINT}`)
+                .then(res => res.json())
+                .then(footers => {
+                    if (footers.length > 0) {
+                        const footer = footers[0];
+
+                        // Update footer description
+                        if (footer.description) {
+                            $("#footer-description").text(footer.description);
+                        }
+
+                        // Update copyright text
+                        if (footer.copyright_text) {
+                            $("#copyright-text").text(footer.copyright_text);
+                        }
+
+                        // Update designer text
+                        if (footer.designer_text) {
+                            $("#designer-text").html(footer.designer_text);
+                        } else {
+                            $("#designer-text").html(
+                                'Designed By <a href="https://reinsoft.site">ReinSoft IT Solutions</a>'
+                            );
+                        }
+
+                        // Update social links
+                        const socialLinks = footer.social_links || {};
+                        const socialIcons = $("#footer-social");
+                        socialIcons.empty();
+
+                        if (socialLinks.facebook) {
+                            socialIcons.append(
+                                `<a href="${socialLinks.facebook}" target="_blank"><i class='bx bxl-facebook'></i></a>`
+                            );
+                        }
+                        if (socialLinks.twitter) {
+                            socialIcons.append(
+                                `<a href="${socialLinks.twitter}" target="_blank"><i class='bx bxl-twitter'></i></a>`
+                            );
+                        }
+                        if (socialLinks.instagram) {
+                            socialIcons.append(
+                                `<a href="${socialLinks.instagram}" target="_blank"><i class='bx bxl-instagram'></i></a>`
+                            );
+                        }
+                        if (socialLinks.linkedin) {
+                            socialIcons.append(
+                                `<a href="${socialLinks.linkedin}" target="_blank"><i class='bx bxl-linkedin'></i></a>`
+                            );
+                        }
+                        if (Object.keys(socialLinks).length === 0) {
+                            socialIcons.append(`
+                            <a href="#"><i class='bx bxl-facebook'></i></a>
+                            <a href="#"><i class='bx bxl-twitter'></i></a>
+                            <a href="#"><i class='bx bxl-instagram'></i></a>
+                            <a href="#"><i class='bx bxl-pinterest'></i></a>
+                        `);
+                        }
+
+                        // Update footer links
+                        const footerLinks = $("#footer-links");
+                        footerLinks.empty();
+
+                        if (footer.privacy_link) {
+                            footerLinks.append(
+                                `<a href="${footer.privacy_link}" target="_blank">Privacy</a>`
+                            );
+                        }
+                        if (footer.terms_link) {
+                            footerLinks.append(
+                                `<a href="${footer.terms_link}" target="_blank">Terms</a>`
+                            );
+                        }
+                        if (footer.disclaimer_link) {
+                            footerLinks.append(
+                                `<a href="${footer.disclaimer_link}" target="_blank">Disclaimer</a>`
+                            );
+                        }
+                        if (
+                            !footer.privacy_link &&
+                            !footer.terms_link &&
+                            !footer.disclaimer_link
+                        ) {
+                            footerLinks.append(`
+                            <a href="#">Privacy</a>
+                            <a href="#">Terms</a>
+                            <a href="#">Disclaimer</a>
+                        `);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading footer:", error);
+                });
+
+            // Contact form submission
+            $('#contactForm').on('submit', function (e) {
+                e.preventDefault();
+                const submitButton = $(this).find('button[type="submit"]');
+                const originalText = submitButton.text();
+
+                submitButton.prop('disabled', true);
+                submitButton.html('<span class="spinner-border spinner-border-sm"></span> Sending...');
+
+                // Simulate API call
+                setTimeout(() => {
+                    alert('Thank you for your message! We will get back to you soon.');
+                    $('#contactForm')[0].reset();
+                    submitButton.prop('disabled', false);
+                    submitButton.text(originalText);
+                    $('#exampleModal').modal('hide');
+                }, 1500);
+            });
         });
+
+        // Fetch Contact Info
+        async function fetchContactInfo() {
+            try {
+                const response = await fetch(`${API_BASE_URL}${CONTACT_ENDPOINT}`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const info = await response.json();
+
+                let socialHtml = "";
+                if (info.facebook) socialHtml += `<a href="${info.facebook}" target="_blank"><i class="bx bxl-facebook"></i></a>`;
+                if (info.twitter) socialHtml += `<a href="${info.twitter}" target="_blank"><i class="bx bxl-twitter"></i></a>`;
+                if (info.instagram) socialHtml += `<a href="${info.instagram}" target="_blank"><i class="bx bxl-instagram"></i></a>`;
+                if (info.pinterest) socialHtml += `<a href="${info.pinterest}" target="_blank"><i class="bx bxl-pinterest"></i></a>`;
+                if (info.linkedin) socialHtml += `<a href="${info.linkedin}" target="_blank"><i class="bx bxl-linkedin"></i></a>`;
+
+                // Fallback if no social links
+                if (!socialHtml) {
+                    socialHtml = `
+                        <a href="#"><i class="bx bxl-facebook"></i></a>
+                        <a href="#"><i class="bx bxl-twitter"></i></a>
+                        <a href="#"><i class="bx bxl-instagram"></i></a>
+                        <a href="#"><i class="bx bxl-pinterest"></i></a>
+                    `;
+                }
+
+                $("#top-nav-content").html(`
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-auto">
+                                ${info.email ? `<p><i class="bx bxs-envelope"></i> ${info.email}</p>` : ''}
+                                ${info.phone ? `<p><i class="bx bxs-phone-call"></i> ${info.phone}</p>` : ''}
+                            </div>
+                            <div class="col-auto social-icons">
+                                ${socialHtml}
+                            </div>
+                        </div>
+                    </div>
+                `);
+            } catch (error) {
+                console.error("Error loading contact info:", error);
+                $("#top-nav-content").html(`
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-auto">
+                                <p><i class="bx bxs-envelope"></i> info@thriveenterprise.com</p>
+                                <p><i class="bx bxs-phone-call"></i> (123) 456-7890</p>
+                            </div>
+                            <div class="col-auto social-icons">
+                                <a href="#"><i class="bx bxl-facebook"></i></a>
+                                <a href="#"><i class="bx bxl-twitter"></i></a>
+                                <a href="#"><i class="bx bxl-instagram"></i></a>
+                                <a href="#"><i class="bx bxl-pinterest"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            }
+        }
     </script>
 </body>
+
 </html>
