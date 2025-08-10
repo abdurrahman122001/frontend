@@ -28,7 +28,7 @@
         <!-- BOTTOM NAV -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="/thrive/">
+                <a class="navbar-brand" href="/">
                     <img id="header-logo" src="img/Logo Files/png/Color logo - no background.png"
                         alt="Thrive Enterprise Logo" height="70">
                 </a>
@@ -222,7 +222,7 @@
         // Fetch Header
         async function fetchHeader() {
             try {
-                const response = await fetch(`${API_BASE_URL}/${HEADER_ENDPOINT}`);
+                const response = await fetch(`${API_BASE_URL}${HEADER_ENDPOINT}`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const headers = await response.json();
 
@@ -251,11 +251,11 @@
 
                     // Static hrefs (you can match them to menu items order)
                     const staticHrefs = [
-                        '/thrive/index',
-                        '/thrive/index#about',
-                        '/thrive/index#services',
-                        '/thrive/index#team',
-                        '/thrive/index#contact'
+                        '/index',
+                        '/index#about',
+                        '/index#services',
+                        '/index#team',
+                        '/index#contact'
                     ];
 
                     // Populate menu dynamically
